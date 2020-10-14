@@ -16,7 +16,8 @@ The docker build command builds an image from a Dockerfile.The Dockerfile locati
 -> The PATH is a directory on a local filesystem.
 -> The URL is a Git repository location.
 
-'As a good practice,we should have a seprate location for the Dockerfile and all the other relavent files and directories required for building the new image'
+'As a good practice,we should have a seprate location for the Dockerfile and all the other relavent files 
+and directories required for building the new image'
 
 The build is run by the Docker daemon not by the CLI.The build sends the entire context to the daemon.
 
@@ -34,6 +35,40 @@ The Docker daemon runs the instructions from the Dockerfile one-by-one and commi
 
 Each instructions in the Dockerfile is run independently.
 
+
+Format
+======
+Dockerfile format:
+
+#Comment
+INSTRUCTION arguments
+
+The instruction is not case-sensitive.However,it is good to keep it in UPPER case so that
+instructions can be distinguish from the arguments.
+
+A Dockerfile must begin with a 'FROM' instruction,which tell which image template need to be
+used during the build process.
+
+Before the 'FROM' instruction we can give 'Parser Directives' or 'Comments' or 'Globally scoped ARGs'.
+
+.dockerignore file
+==================
+Before docker build sends the Dockerfile context to the daemon,it looks for a file named 
+.dockerignore in the root directory of the context.
+
+.dockerignore file contains the list of files and directories which need to be ignored during
+the build process.
+
+Example:
+========
+# comment  ## ignored
+./temp*	   ## exclude files and directories whoes name start with temp
+*/*/temp*  ## exclude files and directories,sub-directories which include temp
+temp?      ## exclude files and directories /temp ,/tempa or /tempb are excluded
+!README.md ## exception
+
+FROM
+====
 
 
 
