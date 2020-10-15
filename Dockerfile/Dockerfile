@@ -70,5 +70,40 @@ temp?      ## exclude files and directories /temp ,/tempa or /tempb are excluded
 FROM
 ====
 
+FROM --platform=<platform> <image>:<tag> AS <name>
+or
+FROM --platform=<platform> <image>:<@digest> AS <name>
 
+The FROM instruction initializes a new image build stage and sets the base image for subsequent instructions.
+
+FROM can appeared multiple times in the Dockerfile
+
+-> **ARG is the only instructions that may precede FROM in the Dockerfile.
+   ARG can hold any argument that can be used in the instruction below FROM.
+   
+   ARG BUILD_VERSION=latest
+   FROM ubuntu:${BUILD_VERSION}
+
+-> **platform flag can be used to specify the platform of the base image template,like linux/amd64, linux/arm64 or window/amd64.
+
+-> <image> can be any valid image template name from docker hub repository
+
+-> **<tag> and <@digest> can be obtained from docker hub repository.If it is ommited build will consider <latest>
+
+RUN
+===
+
+RUN has 2 forms:
+
+-> RUN <command> (shell form,the default shell for the command is /bin/sh -c)
+   The default shell can be override by using SHELL instruction.
+
+-> RUN ["executable","param1","param2"] (exec form)
+
+The RUN instruction execute the command on the top of the new image layer.
+
+RUN /bin/bash -c 'source $HOME/.bashrc; \
+echo $HOME'
+or
+RUN ["/bin/bash","-c","echo hello world"]
 
