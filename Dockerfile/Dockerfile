@@ -107,3 +107,17 @@ echo $HOME'
 or
 RUN ["/bin/bash","-c","echo hello world"]
 
+CMD
+===
+
+The CMD instruction has three forms:
+
+-> CMD ["executable","param1","param2"] (exec form)
+-> CMD ["param1","param2"] (as default parameter for ENTRYPOINT)
+-> CMD command param1 param2 (shell form)
+
+There can be only one CMD instruction in a Dockerfile.If we give multiple CMD instructions
+then the last CMD instruction will be executed.
+
+**RUN/CMD. RUN runs a command and commits the result.CMD does not execute anything 
+at the build time.
