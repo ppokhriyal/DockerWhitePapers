@@ -121,3 +121,29 @@ then the last CMD instruction will be executed.
 
 **RUN/CMD. RUN runs a command and commits the result.CMD does not execute anything 
 at the build time.
+
+LABEL
+=====
+The LABEL instruction add metadata to an image.A LABEL is a key-value pair.
+
+LABEL <key>=<value> <key>=<value>
+
+EXPOSE
+======
+The EXPOSE instruction informs Docker that the container listens on the specified
+network ports at runtime.Ports can be TCP or UDP and the default is TCP if protocol is not
+specified.
+
+The EXPOSE instruction does not actually publish the port,it is just a documentation between
+the person who build the image and the person who runs the container.
+
+To actually publish the port at the run time of docker we need to give the '-p' flag on
+docker run or the '-P' flag to publish all exposed ports and map them to high-order ports.
+
+EXPOSE 80/udp
+or
+EXPOSE 80/tcp
+EXPOSE 80/udp
+
+EXPOSE settings can be override by using 'p' flag.
+
