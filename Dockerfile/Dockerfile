@@ -147,3 +147,12 @@ EXPOSE 80/udp
 
 EXPOSE settings can be override by using 'p' flag.
 
+ENV
+===
+The ENV instruction sets the environment variable.It is formatted in <key> <value>
+
+ENV MYVAR="Hello World"
+
+The above environment variable will remain persist when a container runs from the resulting image.
+The set environment variable can be checked with docker inspect command or it can be changed
+during the docker run command 'docker run --env <key>=<value>'
