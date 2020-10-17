@@ -156,3 +156,61 @@ ENV MYVAR="Hello World"
 The above environment variable will remain persist when a container runs from the resulting image.
 The set environment variable can be checked with docker inspect command or it can be changed
 during the docker run command 'docker run --env <key>=<value>'
+
+ADD
+===
+
+ADD has two forms 
+
+#shell
+ADD --chown=<user>:<group> <src> <dest>
+
+#exec
+ADD --chown=<user>:<group> ["<src>","<dest>"]
+
+The ADD instruction copies the local file into the image.
+The advantage of using ADD is that,it also performs the action
+on the file i.e
+
+-> if i want to copy a tar.bz2 file from local to image,it will copy as well
+   as extract the tar file.
+-> if i give the url path in <src>,it will download the file from the given
+   url in the image <dest> path.
+
+COPY
+====
+
+COPY has two forms
+
+#shell
+COPY --chown=<user>:<group> <src> <dest>
+
+#exec
+COPY --chown=<user>:<group> ["<src>","<dest>"]
+
+The COPY instruction copies the the local file into the image path,same
+as ADD instruction.Only difference between COPY and ADD is that, COPY
+does'nt performs the action just like ADD instruction does on the files which need to be copied in the image path.
+
+We need to give the RUN instruction after performing the COPY instruction,
+in case we need to perform some action on the copied file.
+
+ENTRYPOINT
+==========
+
+The ENTRYPOINT instruction gets executed when running a container.A dockerfile
+can have multiple ENTRYPOINT but only the last one will be executed.
+
+ENTRYPOINT and CMD works together,CMD works as a default argument of the ENTRYPOINT.
+
+FROM ubuntu
+ENTRYPOINT ["top","-b"]
+CMD ["-c"]
+
+#exec
+ENTRYPOINT ["<executable>","<param1>","<param2>"]
+
+#shell
+ENTRYPOINT command param1 param2
+
+
