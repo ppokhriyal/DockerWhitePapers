@@ -213,4 +213,32 @@ ENTRYPOINT ["<executable>","<param1>","<param2>"]
 #shell
 ENTRYPOINT command param1 param2
 
+VOLUME
+======
+
+The VOLUME instruction creates a mount point with the specified name.
+The value can be in JSON array format VOLUME ["/vlog"]. The volume is created at the time of
+running a container.
+
+VOLUME ["myvol"]
+
+Any changes after the VOLUME instruction is passed,will not be considered.
+Host directory (the mountpoints) is not supported.
+
+USER
+====
+
+The USER instruction creates a user:group in the images.
+
+USER username:group
+or
+USER uid:gid
+
+WORKDIR
+=======
+
+WORKDIR /path/to/workdir
+
+The WORKDIR instruction sets the working directory for any RUN,CMD,ENTRYPOINT,COPY and ADD instruction.
+The WORKDIR instruction can be used multiple times.
 
