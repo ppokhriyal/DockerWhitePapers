@@ -1,0 +1,18 @@
+Docker-Compose
+==============
+
+Compose is a tool for defining and running multi-container Docker applications.With
+Compose,we can use YAML file to configure the application's services.Then with a single
+command,we can create and start all the services from YAML configuration.
+
+3-step process:
+
+1. Define app's environment with a Dockerfile
+2. Define services that make up your app in docker-compose.yml.
+3. Run docker-compose up
+
+Compose has commands for managing the whole lifecycle of your application
+
+- Start,Stop and rebuild services
+- View the status of running services
+- Stream the log output of running services
