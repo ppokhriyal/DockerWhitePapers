@@ -16,3 +16,29 @@ Compose has commands for managing the whole lifecycle of your application
 - Start,Stop and rebuild services
 - View the status of running services
 - Stream the log output of running services
+
+Service configuration
+---------------------
+The Compose file is a YAML file defining services,networks and volumes.
+The default path for a compose file is ./docker-compose.yml .
+
+Using Dockerfile
+----------------
+We can use the Dockerfile in our docker-compose file with the help of below instruction
+
+version: "3.8"
+services:
+  web:
+   build: ./
+
+'build' instruction followed by the absolute-path of the dockerfile.
+
+version: "3.8"
+services:
+  web:
+   build:
+    context: ./
+
+'context' instruction followed by the absolute-path of the dockerfile.
+	 
+
