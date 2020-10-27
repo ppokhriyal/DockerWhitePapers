@@ -41,4 +41,44 @@ services:
 
 'context' instruction followed by the absolute-path of the dockerfile.
 	 
+If we specify build and image as well,then Compose will build the image with 'image:' instruction.
 
+Replicas
+--------
+Create replicas of containers
+
+version: "3.8"
+services:
+  web:
+   build: .
+   deploy:
+    replicas: 2
+
+Command
+-------
+overrides the CMD instruction in dockerfile,if exists
+
+version: "3.8"
+services:
+  web:
+   build: .
+   command: /bin/bash
+
+Custom Container name
+---------------------
+container_name: my_custom_container
+
+Depends_on
+----------
+depends_on,express dependency between services
+
+version: "3.8"
+services:
+  web:
+   image: ubuntu:latest
+   depends_on:
+     - db
+  db:
+   image: redis
+
+compose will first start the db.depends_on does'nt wait db to be up and ready before starting the web
