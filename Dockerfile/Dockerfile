@@ -258,4 +258,4 @@ COPY --from=0 /opt/ubuntu/ubuntu.txt .
 
 '--from=0' i.e copy file ubuntu.txt from image line 0 to the working directory 'root' of alpine image
 or
-'--from=ubuntubuild'
+'--from=ubuntubuild''
