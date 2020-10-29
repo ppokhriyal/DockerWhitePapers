@@ -242,3 +242,20 @@ WORKDIR /path/to/workdir
 The WORKDIR instruction sets the working directory for any RUN,CMD,ENTRYPOINT,COPY and ADD instruction.
 The WORKDIR instruction can be used multiple times.
 
+Multi-Stage-Builds
+===================
+With multi-stage-build we can use multiple FROM instruction in one Dockerfile.Each FROM	instruction
+can use a different base and each of them begins a new stage of the build.
+We can copy the artificats from the other build. 
+
+FROM ubuntu:latest AS ubuntubuild
+WORKDIR /opt/ubuntu
+RUN echo "hello ubuntu" > /opt/ubuntu/ubuntu.txt
+
+FROM alpine:latest
+WORKDIR /root
+COPY --from=0 /opt/ubuntu/ubuntu.txt .
+
+'--from=0' i.e copy file ubuntu.txt from image line 0 to the working directory 'root' of alpine image
+or
+'--from=ubuntubuild'
