@@ -81,4 +81,24 @@ services:
   db:
    image: redis
 
-compose will first start the db.depends_on does'nt wait db to be up and ready before starting the web
+compose will first start the db service.depends_on does'nt wait db to be up and ready before starting the web.
+
+Network
+-------
+version: "3.8"
+services:
+  web:
+   build:
+    context: .
+    network: host or custom_network
+
+SHM_SIZE
+--------
+version: "3.8"
+services:
+  web:
+   build:
+    context: .
+    shm_size: '2gb'
+
+
