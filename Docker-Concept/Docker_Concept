@@ -1,0 +1,98 @@
+Containerization vs Virtualization
+==================================
+
+=> Virtualization		=> Containerization
+
+-------------------------	----------------------------------
+APPLICATION| APPLICATION|	|APPLICATION	| APPLICATION 	 |			
+-----------|------------|	|---------------|----------------|
+ OS 	   |	OS	|	|RUNTIME SYSTEM | RUNTIME SYSTEM |
+------------------------|	|--------------------------------|
+	HYPERVISOR	|	|    CONTAINER MANAGER		 |
+------------------------|	|--------------------------------|
+  HOST OPERATING SYSTEM |	|   HOST OPERATING SYSTEM	 |
+-------------------------	----------------------------------
+
+Containerization and Virtualization are two ways to deploy multiple isolated services on a single platform.
+
+
+In Virtualization, we install the HYPERVISOR software on top of the HOST OS machine. After that we install the OS on top of
+the HYPERVISOR and install the application.In this senario the OS on top of the HYPERVISOR uses the HOST machine resources.
+All the resources like RAM,CPU,USB,NETWORK all are created virtually for the OS on HYPERVISOR.
+
+In Containerization, we install the CONTAINER MANAGER on top of the HOST OS machine.Insted of installing the whole OS on top
+of the CONTAINER MANAGER we use the minimal structure of the OS and install the application into it. Container Manager uses the
+host machine kernel,RAM and other resources directly insted of creating the vitrual resources.This makes it lightweight and fast
+as compared to Virtualization.
+
+Hypervisor
+==========
+Hypervisor is also called as virtual machine monitor.Hypervisor software main role is to deploy the VM's.There are two type of Hypervisors
+
+1. Bare Metal : Hypervisor SW is installed directly on top of the Host's HW.
+
+VM1 | VM2 | VM3
+---------------
+Hypervisor SW
+---------------
+Host Hardware
+
+2. Hosted : Hypervisor is installed on top of the Host OS.
+
+VM1 | VM2 | VM3
+---------------
+Hypervisor SW
+---------------
+Host OS
+---------------
+Host Hardware
+
+
+Docker Overview
+===============
+Docker is a open-source containerization tool.Docker enables us to isolate our application from the infrastructure.
+Docker provieds a isolated environment for the application which is called container.Containers are lightweight because
+they don'nt need the extra load of hypervisor as they directly use the host kernel.
+
+Docker Engine
+=============
+
+Docker Engine is a Client Server architecutre.
+
+
+-----------------------------
+                            |    
+ Docker Client [docker cli] |
+ manages container,images,  |	
+ network, data volume}      |
+----------------------------|
+			    |	
+	 REST API           |
+                            |
+----------------------------| 
+                            |
+  Docker Daemon [server]    |
+                            |
+-----------------------------
+
+=> Docker server is a long-running program called daemon [dockerd]
+=> REST API lies between the the Docker client and Docker server.It provides
+   a interface for the docker client to talk with docker server.
+=> Docker client (docker command) uses the REST API to control and interact with docker daemon.
+
+
+Docker Architecture
+===================
+
+
+   CLIENT		Docker HOST 		Docker Hub (Registery)
+------------		-------------	        ----------------------
+docker pull             Docker Daemon		contains all the images
+docker build		-------------           repository.
+docker run		containers
+                            |
+	                 images
+
+When a Docker client request for the Image template,first it will check wether the image template is available locally.If not
+then it will send the request to the REST API for the image template and REST API will forward the request to the Docker daemon which
+will the pull the image from Docker Registry HUB.								
