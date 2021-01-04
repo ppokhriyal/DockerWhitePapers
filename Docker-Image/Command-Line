@@ -1,0 +1,21 @@
+Docker Image
+============
+
+List Images
+-----------
+docker image ls
+or
+docker image ls -a
+
+Pull Image template from hub repository
+---------------------------------------
+docker image pull imagename:tag
+
+Remove unused images
+--------------------
+docker image prune -a -f
+
+[ -a ] remove all the unused images
+[ -f ] do not prompt for confirmation 
+
+
