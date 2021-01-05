@@ -11,6 +11,10 @@ Pull Image template from hub repository
 ---------------------------------------
 docker image pull imagename:tag
 
+Push image to repository
+------------------------
+docker image push repository:tag
+
 Remove unused images
 --------------------
 docker image prune -a -f
@@ -18,4 +22,31 @@ docker image prune -a -f
 [ -a ] remove all the unused images
 [ -f ] do not prompt for confirmation 
 
+Inspect the Image details
+-------------------------
+docker image inspect imageid
+
+Remove Image
+------------
+docker image rm imageid
+
+Remove multiple images at once
+------------------------------
+docker rmi $(docker images -a -q)
+
+Create new tag image
+--------------------
+docker image tag sourceimage:tag targetimage:tag
+
+Show history of image
+---------------------
+docker image history imageid
+
+Save the contents of image in tar format
+----------------------------------------
+docker image save -o myimagebackup.tar.bz2 imageid
+
+Create new image from image tar file
+------------------------------------
+cat myimage.tar | docker image import - mynewimage:tag
 
