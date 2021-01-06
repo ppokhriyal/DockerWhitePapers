@@ -1,0 +1,34 @@
+Docker Container
+================
+Docker Container is the running instance of Docker Image.It creates a writable container layer over the image template.
+
+Show all the active containers
+------------------------------
+docker container ls
+
+Show all active and non-active containers
+-----------------------------------------
+docker container ls -a
+
+Stop running container
+----------------------
+docker container stop containerid
+
+[ --time ] seconds to wait before stop the container
+
+Start container in attached mode
+--------------------------------
+docker container start --attach --interactive containerid-or-containername
+
+after above command,user will enter into the container
+
+Restart Container
+----------------
+docker container restart CONTAINER
+
+Rename container
+---------------
+docker container rename CONTAINER new_container_name
+
+
+
