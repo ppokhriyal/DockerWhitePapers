@@ -30,5 +30,20 @@ Rename container
 ---------------
 docker container rename CONTAINER new_container_name
 
+Create container in detacched mode
+----------------------------------
+docker container create -t -i --name new_containername image:tag </bin/bash>
+
+Create and run the container in detached mode
+---------------------------------------------
+docker container run -i -t -d --name new_containername image:tag </bin/bash>
+
+Copy Files from Local system to Container
+-----------------------------------------
+docker container cp localfile containerid:/path/to/copy
+
+Copy Files from Container to Local system
+-----------------------------------------
+docker container cp containerid:/path/file local_system_path
 
 
